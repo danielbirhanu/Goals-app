@@ -1,14 +1,13 @@
 const express = require("express")
 const app = express()
-const dotenv = require("dotenv").config()
+
+require("dotenv").config()
+
+const goalRouter = require("./routes/goalRoutes")
 const port = process.env.PORT
 
-
-console.log(dotenv)
-
-app.get('/api/user', (req, res) => {
-    res.json({message: "Daniel is here"})
-})
+app.use(express.json())
+app.use('/api/user', goalRouter)
 
 app.listen(port, ()=>{
     console.log(`server running on ${port} successfully!`)
